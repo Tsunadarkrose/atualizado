@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from './components/Navbar';
 import Button from './components/Button';
 import { 
@@ -21,25 +21,8 @@ import {
 } from 'lucide-react';
 
 const App: React.FC = () => {
-  // --- STATE FOR CONTACT FORM ---
-  const [formState, setFormState] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    message: ''
-  });
-
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert('Agradecemos seu contato. Entraremos em contato em breve.');
-  };
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({
-      ...formState,
-      [e.target.name]: e.target.value
-    });
-  };
+  // WhatsApp Link Constant
+  const WHATSAPP_LINK = "https://wa.me/5521969142576?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20estrat%C3%A9gica%20do%20meu%20escrit%C3%B3rio.";
 
   // --- DATA DEFINITIONS ---
   const stats = [
@@ -117,12 +100,18 @@ const App: React.FC = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5 justify-center md:justify-start">
-                <Button onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth'})}>
+                <Button 
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                >
                   <span className="flex items-center gap-3">
                     Agendar Consulta Estratégica <ArrowRight size={18} />
                   </span>
                 </Button>
-                <Button variant="outline" onClick={() => document.getElementById('areas')?.scrollIntoView({ behavior: 'smooth'})}>
+                <Button 
+                  variant="outline" 
+                  onClick={() => document.getElementById('areas')?.scrollIntoView({ behavior: 'smooth'})}
+                >
                   Conhecer Especialidades
                 </Button>
               </div>
@@ -288,7 +277,7 @@ const App: React.FC = () => {
                             <MessageSquare className="w-5 h-5 text-gold-400" />
                         </div>
                         <h3 className="text-white font-serif text-xl mt-4 mb-2">1. Relato Inicial</h3>
-                        <p className="text-slate-400 text-sm">Você preenche o formulário ou nos chama no WhatsApp descrevendo brevemente o caso.</p>
+                        <p className="text-slate-400 text-sm">Você nos chama no WhatsApp descrevendo brevemente o caso para uma triagem inicial.</p>
                     </div>
                     <div className="relative p-6 bg-navy-800/50 border border-white/5 rounded-sm">
                         <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-navy-900 border border-gold-400 p-2 rounded-full">
@@ -324,7 +313,7 @@ const App: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-white font-serif text-xl mb-1">Central de Atendimento</h4>
-                      <p className="text-slate-400">+55 (11) 3000-0000</p>
+                      <p className="text-slate-400">+55 (21) 96914-2576</p>
                       <p className="text-gold-400/80 text-sm font-medium mt-1">Plantão 24h para Urgências Criminais</p>
                     </div>
                   </div>
@@ -353,77 +342,35 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              {/* Contact Form */}
-              <div className="w-full lg:w-7/12 bg-white/[0.02] p-8 md:p-12 border border-white/5 relative">
+              {/* Contact Area - REPLACED FORM WITH DIRECT LINK */}
+              <div className="w-full lg:w-7/12 bg-white/[0.02] p-8 md:p-12 border border-white/5 relative flex flex-col items-center justify-center text-center">
                 <div className="absolute top-0 right-0 w-20 h-20 bg-gold-400/5 rounded-bl-full"></div>
                 
-                <h3 className="font-serif text-2xl text-white mb-6">Solicitar Análise do Caso</h3>
+                <div className="w-20 h-20 bg-gold-400/10 rounded-full flex items-center justify-center mb-6">
+                  <MessageCircle className="w-10 h-10 text-gold-400" />
+                </div>
+
+                <h3 className="font-serif text-3xl text-white mb-4">Atendimento Prioritário</h3>
                 
-                <form onSubmit={handleFormSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-xs uppercase tracking-widest text-slate-500 mb-2">Nome Completo</label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={formState.name}
-                        onChange={handleFormChange}
-                        className="w-full bg-navy-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition-colors placeholder-slate-600"
-                        placeholder="Seu nome ou da Empresa"
-                        required
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-xs uppercase tracking-widest text-slate-500 mb-2">Telefone / WhatsApp</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formState.phone}
-                        onChange={handleFormChange}
-                        className="w-full bg-navy-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition-colors placeholder-slate-600"
-                        placeholder="(00) 00000-0000"
-                        required
-                      />
-                    </div>
-                  </div>
+                <p className="text-slate-400 max-w-md mb-8 text-lg">
+                  Para garantir agilidade e sigilo, realizamos a triagem inicial diretamente pelo WhatsApp do sócio responsável.
+                </p>
 
-                  <div>
-                    <label htmlFor="email" className="block text-xs uppercase tracking-widest text-slate-500 mb-2">E-mail Corporativo ou Pessoal</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formState.email}
-                      onChange={handleFormChange}
-                      className="w-full bg-navy-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition-colors placeholder-slate-600"
-                      placeholder="seu@email.com"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-xs uppercase tracking-widest text-slate-500 mb-2">Detalhes do Caso (Sigilo Garantido)</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formState.message}
-                      onChange={handleFormChange}
-                      rows={4}
-                      className="w-full bg-navy-900 border border-white/10 px-4 py-3 text-white focus:outline-none focus:border-gold-400 transition-colors placeholder-slate-600 resize-none"
-                      placeholder="Descreva brevemente sua situação para direcionarmos ao especialista correto..."
-                      required
-                    ></textarea>
-                  </div>
-
-                  <Button type="submit" fullWidth className="mt-4">
-                    Enviar Solicitação de Análise
-                  </Button>
-                  <p className="text-center text-slate-500 text-xs mt-4">
-                    Ao enviar, você concorda com nossa política de privacidade. Seus dados estão protegidos.
-                  </p>
-                </form>
+                <Button 
+                  href={WHATSAPP_LINK} 
+                  fullWidth 
+                  target="_blank"
+                  className="py-5 text-base shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+                >
+                  <span className="flex items-center gap-3">
+                    <MessageCircle className="w-5 h-5" />
+                    Solicitar Análise do Caso
+                  </span>
+                </Button>
+                
+                <p className="text-slate-500 text-xs mt-6">
+                  Ao clicar, você será redirecionado para o WhatsApp oficial do escritório.
+                </p>
               </div>
             </div>
           </div>
@@ -451,7 +398,7 @@ const App: React.FC = () => {
 
       {/* --- WHATSAPP FLOATING BUTTON --- */}
       <a 
-        href="https://wa.me/5511999999999" 
+        href={WHATSAPP_LINK}
         target="_blank" 
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 group"

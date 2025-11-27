@@ -32,14 +32,17 @@ const Navbar: React.FC = () => {
           </div>
         </a>
 
-        {/* CTA - Scrolls to Contact Form */}
-<a
-  href="https://wa.me/5521969142576?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20estrat%C3%A9gica%20do%20meu%20escrit%C3%B3rio."
-  target="_blank"
-  className="px-6 py-2 border border-gold-400 text-gold-400 text-xs uppercase tracking-widest hover:bg-gold-400 hover:text-navy-900 transition-all duration-300 font-medium"
->
-  Agendar Consulta
-</a>
+        {/* CTA - Direct WhatsApp Link */}
+        <a
+          href="https://wa.me/5521969142576?text=Ol%C3%A1,%20gostaria%20de%20solicitar%20uma%20an%C3%A1lise%20estrat%C3%A9gica%20do%20meu%20escrit%C3%B3rio."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-6 py-2 border border-gold-400 text-gold-400 text-xs uppercase tracking-widest hover:bg-gold-400 hover:text-navy-900 transition-all duration-300 font-medium"
+        >
+          Agendar Consulta
+        </a>
+      </div>
+    </nav>
   );
 };
 
